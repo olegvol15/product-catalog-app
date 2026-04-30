@@ -7,6 +7,9 @@ import "@/styles/products.css";
 export const metadata: Metadata = {
   title: "Product Catalog",
   description: "Product listing page",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
