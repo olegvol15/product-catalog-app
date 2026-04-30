@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Product Catalog App
 
-## Getting Started
+Product listing page built with Next.js, TypeScript, and TanStack Query.
 
-First, run the development server:
+Repository: https://github.com/olegvol15/product-catalog-app
+
+## Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create `.env.local` from the example file and set the API key:
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+PRODUCTS_API_KEY=your_api_key_here
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+## Implementation Notes
 
-To learn more about Next.js, take a look at the following resources:
+- Product data is loaded through TanStack Query on the client.
+- The browser calls the local `/api/catalog` route, which keeps the external `x-api-key` server-side.
+- `src/lib/catalog-api.ts` fetches the REST API and normalizes the response.
+- `src/types/schema.ts` contains TypeScript types based on the provided schema.
+- `src/types/catalog.ts` contains app-facing catalog models used by the UI.
+- `src/lib/catalog-model.ts` supports both schema field names and the observed API aliases.
+- Cart behavior is a fake async request that updates local cart state and the header badge.
+- Styling is plain CSS split by section under `src/styles`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```
