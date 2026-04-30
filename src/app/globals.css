@@ -1,13 +1,11 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f4f2ee;
+  --foreground: #1d1d1b;
+  --muted: #625d55;
+  --line: #ddd6cb;
+  --surface: #ffffff;
+  --accent: #d9472f;
+  --promo: #f1d94b;
 }
 
 html {
@@ -42,8 +40,13 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

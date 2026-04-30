@@ -1,0 +1,125 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.product-card__image-frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #e8e2d7;
+}
+
+.product-card__image {
+  object-fit: cover;
+}
+
+.product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+}
+
+.product-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.product-card__brand-logo {
+  width: 80px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.product-card h2 {
+  font-size: 21px;
+  line-height: 1.18;
+}
+
+.product-card p {
+  flex: 1;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 6px;
+}
+
+.product-card__prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.product-card__price {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.product-card__price--discount {
+  color: #b73522;
+}
+
+.product-card__price--original {
+  color: #817a70;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: line-through;
+}
+
+.product-card__promotion {
+  max-width: 150px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--promo);
+  color: var(--foreground);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: right;
+}
+
+@media (max-width: 980px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .product-card__promotion {
+    max-width: none;
+    text-align: left;
+  }
+}
