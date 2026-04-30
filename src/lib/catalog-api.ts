@@ -14,6 +14,7 @@ export async function fetchCatalogData(): Promise<CatalogData> {
   }
 
   const response = await fetch(CATALOG_API_URL, {
+    cache: "no-store",
     headers: {
       "x-api-key": apiKey,
     },
@@ -27,5 +28,4 @@ export async function fetchCatalogData(): Promise<CatalogData> {
 
   return normalizeCatalogData(data);
 }
-
 
