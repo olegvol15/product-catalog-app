@@ -2,9 +2,9 @@
 
 const FAKE_CART_REQUEST_DELAY = 450;
 
-export async function addProductToCart(productId: string): Promise<void> {
+export async function addProductToCart(productId: string) {
   await new Promise((resolve) => {
-    window.setTimeout(resolve, FAKE_CART_REQUEST_DELAY);
+    setTimeout(resolve, FAKE_CART_REQUEST_DELAY);
   });
 
   if (!productId) {
