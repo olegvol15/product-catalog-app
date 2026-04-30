@@ -1,11 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
 import { CatalogHeader } from "@/components/catalog-header";
 import { ProductGrid } from "@/components/product-grid";
+import { addProductToCart } from "@/lib/cart-api";
 import { useCatalogQuery } from "@/lib/catalog-query";
 
 export default function Home() {
   const { data, error, isLoading } = useCatalogQuery();
+  const [cartCount, setCartCount] = useState(0);
+
+  async function handleAddToCart(productId: string) {
+    await addProductToCart(productId);
+    setCartCount((currentCount) => currentCount + 1);
+  }
 
   if (isLoading) {
     return (
@@ -35,7 +44,7 @@ export default function Home() {
 
   return (
     <div className="catalog-page">
-      <CatalogHeader logo={data.logo} />
+      <CatalogHeader cartCount={cartCount} logo={data.logo} />
 
       <main className="catalog-shell">
         <section className="catalog-intro" aria-labelledby="catalog-title">
@@ -47,7 +56,7 @@ export default function Home() {
           </p>
         </section>
 
-        <ProductGrid products={data.products} />
+        <ProductGrid onAddToCart={handleAddToCart} products={data.products} />
       </main>
     </div>
   );

@@ -1,13 +1,16 @@
 import Image from "next/image";
+import { useState } from "react";
 
 import { formatPrice } from "@/lib/formatters";
 import type { CatalogProduct } from "@/types/catalog";
 
 interface ProductCardProps {
+  onAddToCart: (productId: string) => Promise<void>;
   product: CatalogProduct;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ onAddToCart, product }: ProductCardProps) {
+  const [isAdding, setIsAdding] = useState(false);
   const promotion =
     product.promotion && product.discountedPrice !== null
       ? {
@@ -15,6 +18,16 @@ export function ProductCard({ product }: ProductCardProps) {
           discountedPrice: product.discountedPrice,
         }
       : null;
+
+  async function handleAddToCart() {
+    setIsAdding(true);
+
+    try {
+      await onAddToCart(product.id);
+    } finally {
+      setIsAdding(false);
+    }
+  }
 
   return (
     <article className="product-card">
@@ -67,6 +80,15 @@ export function ProductCard({ product }: ProductCardProps) {
             </span>
           ) : null}
         </div>
+
+        <button
+          className="product-card__button"
+          disabled={isAdding}
+          type="button"
+          onClick={handleAddToCart}
+        >
+          {isAdding ? "Adding..." : "Add to cart"}
+        </button>
       </div>
     </article>
   );
