@@ -11,6 +11,7 @@ interface ProductCardProps {
 
 export function ProductCard({ onAddToCart, product }: ProductCardProps) {
   const [isAdding, setIsAdding] = useState(false);
+  const [imageSrc, setImageSrc] = useState(product.image.url);
   const promotion =
     product.promotion && product.discountedPrice !== null
       ? {
@@ -18,6 +19,10 @@ export function ProductCard({ onAddToCart, product }: ProductCardProps) {
           discountedPrice: product.discountedPrice,
         }
       : null;
+
+  function handleImageError() {
+    setImageSrc(createProductPlaceholder(product.title));
+  }
 
   async function handleAddToCart() {
     setIsAdding(true);
@@ -33,11 +38,12 @@ export function ProductCard({ onAddToCart, product }: ProductCardProps) {
     <article className="product-card">
       <div className="product-card__image-frame">
         <Image
-          src={product.image.url}
+          src={imageSrc}
           alt={product.image.altText}
           fill
           sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
           className="product-card__image"
+          onError={handleImageError}
         />
       </div>
 
@@ -92,4 +98,10 @@ export function ProductCard({ onAddToCart, product }: ProductCardProps) {
       </div>
     </article>
   );
+}
+
+function createProductPlaceholder(title: string): string {
+  const label = encodeURIComponent(title);
+
+  return `https://dummyimage.com/600x450/e8e2d7/625d55&text=${label}`;
 }

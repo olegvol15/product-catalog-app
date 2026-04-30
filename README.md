@@ -1,6 +1,6 @@
 # Product Catalog App
 
-Product listing page built with Next.js, TypeScript, and TanStack Query.
+Product listing page built with Next.js and TypeScript.
 
 Repository: https://github.com/olegvol15/product-catalog-app
 
@@ -41,8 +41,7 @@ npm run start
 
 ## Implementation Notes
 
-- Product data is loaded through TanStack Query on the client.
-- The browser calls the local `/api/catalog` route, which keeps the external `x-api-key` server-side.
+- Product data is fetched in a Server Component, keeping the external `x-api-key` server-side.
 - `src/lib/catalog-api.ts` fetches the REST API and normalizes the response.
 - `src/types/schema.ts` contains TypeScript types based on the provided schema.
 - `src/types/catalog.ts` contains app-facing catalog models used by the UI.
