@@ -1,5 +1,7 @@
 .catalog-page {
+  --catalog-header-height: 84px;
   min-height: 100vh;
+  padding-top: var(--catalog-header-height);
 }
 
 .catalog-shell {
@@ -45,6 +47,10 @@
 }
 
 @media (max-width: 680px) {
+  .catalog-page {
+    --catalog-header-height: 72px;
+  }
+
   .catalog-shell {
     width: min(100% - 28px, 1180px);
     padding: 36px 0 48px;

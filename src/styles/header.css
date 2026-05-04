@@ -1,12 +1,14 @@
 .catalog-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  min-height: 84px;
+  min-height: var(--catalog-header-height);
   padding: 12px clamp(20px, 4vw, 56px);
   border-bottom: 1px solid var(--line);
   background: rgba(244, 242, 238, 0.94);
